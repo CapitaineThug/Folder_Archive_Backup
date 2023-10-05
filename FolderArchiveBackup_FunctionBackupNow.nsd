@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root text="&#34;Function ScanBackup&#34;" comment="" color="ffffff" type="program" style="nice">
+	<children>
+		<alternative text="&#34;Si Chemins d'accès sont renseignés&#34;" comment="" color="ff8080">
+			<qTrue>
+				<alternative text="&#34;Si Chemins d'accès sont existants&#34;" comment="" color="ff8080">
+					<qTrue>
+						<instruction text="&#34;CurrentDate = Date actuelle au format dd/MM/yyyy&#34;" comment="" color="ffffff" rotated="0"></instruction>
+						<instruction text="&#34;CurrentHour = Date actuelle au format HH&#34;" comment="" color="ffffff" rotated="0"></instruction>
+						<instruction text="&#34;CurrentMinute = Date actuelle au format mm&#34;" comment="" color="ffffff" rotated="0"></instruction>
+						<instruction text="&#34;CurrentSurname = TB_SaveName.text&#34;" comment="" color="ffffff" rotated="0"></instruction>
+						<instruction text="&#34;Extension = $LB_Extension.text&#34;" comment="" color="ffffff" rotated="0"></instruction>
+						<instruction text="&#34;ArchiveCompressName = CurrentDate + CurrentHour + CurrentMinute + CurrentSurname + &#34;&#34;.zip&#34;&#34;&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+						<instruction text="&#34;ArchiveRealName = CurrentDate + CurrentHour + CurrentMinute + CurrentSurname + Extension&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+						<instruction text="&#34;ArchiveFullpath = (chemin d'accès de sauvegarde) \ ArchiveCompressname&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+						<instruction text="&#34;InvalideChar = Invalid File Char Windows&#34;" comment="" color="ffffff" rotated="0"></instruction>
+						<alternative text="&#34;Si surnom et extension pas null&#34;" comment="&#34;Les 2 champs doivent être renseignés&#34;" color="ff8080">
+							<qTrue>
+								<alternative text="&#34;Si surnom et extension sont valides&#34;" comment="&#34;Les caractères font partie des caractères utilisables dans le nommade de fichiers windows.&#34;" color="ff8080">
+									<qTrue>
+										<alternative text="&#34;Si la sauvegarde est unique&#34;" comment="" color="ff8080">
+											<qTrue>
+												<instruction text="&#34;StartTime = Moment Actuel&#34;" comment="" color="ffffff" rotated="0"></instruction>
+												<instruction text="&#34;Barre de progresssion = Full&#34;" comment="" color="ffffff" rotated="0"></instruction>
+												<instruction text="&#34;Compresser (ArchiveFullpath, rapidement, location sauvegarde)&#34;" comment="" color="ffffff" rotated="0"></instruction>
+												<instruction text="&#34;Calculer et LOG du temps d'exécution en secondes&#34;" comment="" color="ffffff" rotated="0"></instruction>
+												<instruction text="&#34;Renommer le fichier avec la nouvelle extension&#34;" comment="&#34;La raison pour laquelle j'utilise cela est que Powershell n'accepte pas d'extension personnalisée pour un fichier compressé, donc je suis obligé de faire cela en ZIP premièrement et d'ensuite le renommer.&#34;" color="ffffff" rotated="0"></instruction>
+												<instruction text="&#34;Rafraichir les sauvegardes existantes&#34;" comment="" color="ffffff" rotated="0"></instruction>
+												<instruction text="&#34;Log &#34;&#34;la sauvegarde a été effectuée en&#34;&#34; temps d'exécution&#34;" comment="" color="8080ff" rotated="0"></instruction>
+											</qTrue>
+											<qFalse>
+												<instruction text="&#34;LOG &#34;&#34;La sauvegarde suivante existe déjà !&#34;&#34;&#34;" comment="" color="8080ff" rotated="0"></instruction>
+											</qFalse>
+										</alternative>
+									</qTrue>
+									<qFalse>
+										<instruction text="&#34;LOG &#34;&#34;Le surnom et/ou l'extension du fichier n'est/sont pas valide/s !&#34;&#34;&#34;" comment="" color="8080ff" rotated="0"></instruction>
+									</qFalse>
+								</alternative>
+							</qTrue>
+							<qFalse>
+								<instruction text="&#34;LOG &#34;&#34;Le surnom et/ou l'extension est/sont vides !&#34;&#34;&#34;" comment="" color="8080ff" rotated="0"></instruction>
+							</qFalse>
+						</alternative>
+					</qTrue>
+					<qFalse>
+						<instruction text="&#34;LOG &#34;&#34;Un ou plusieurs chemins d'accès renseignés ne sont pas valides !&#34;&#34;&#34;" comment="" color="8080ff" rotated="0"></instruction>
+					</qFalse>
+				</alternative>
+			</qTrue>
+			<qFalse>
+				<instruction text="&#34;LOG &#34;&#34;Veuillez renseigner des chemin d'accès !&#34;&#34;&#34;" comment="" color="8080ff" rotated="0"></instruction>
+			</qFalse>
+		</alternative>
+	</children>
+</root>
